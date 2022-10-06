@@ -1,0 +1,1 @@
+// 必ずapplication service から呼ばれる形で利用される
