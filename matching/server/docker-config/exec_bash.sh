@@ -1,1 +1,1 @@
-docker-compose exec matche bash
+docker-compose exec server bash
