@@ -12,8 +12,6 @@ const Home = () => {
         })()
     }, []);
 
-    console.log(candidateList)
-
     return (
       <>
         <ul>
