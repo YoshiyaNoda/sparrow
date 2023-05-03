@@ -1,1 +1,1 @@
-docker compose exec frontend bash
+docker compose exec react bash

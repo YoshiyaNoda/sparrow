@@ -1,13 +1,13 @@
 version: '3'
 
 services:
-  frontend:
+  react:
     build: .
     environment:
       - NODE_ENV=development
     volumes:
       - ./:/usr/src/app
-    command: sh -c 'cd frontend && yarn && yarn start'
+    command: sh -c 'cd react && yarn && yarn start'
     ports:
       - '3000:3000'
     tty: true
