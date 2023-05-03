@@ -1,0 +1,7 @@
+.candidate-container {
+    padding: 5px;
+    border-radius: 5px;
+    border: solid 1px gray;
+    background-color: white;
+    color: black;
+}

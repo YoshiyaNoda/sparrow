@@ -1,0 +1,8 @@
+.candidate-list-container {
+    width: 100%;
+    padding: 0;
+}
+.candidate-list-container > li {
+    margin: 4px auto;
+    padding: 8px;
+}
