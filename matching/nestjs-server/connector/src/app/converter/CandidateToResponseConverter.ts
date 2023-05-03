@@ -4,7 +4,8 @@ import CandidateResponse from '../response/CandidateResponse';
 export default class CandidateToResponseConverter {
   static convert = (candidateList: Candidate[]): CandidateResponse[] => {
     return candidateList.map(
-      (candidate: Candidate) => new CandidateResponse(candidate.getName()),
+      (candidate: Candidate) =>
+        new CandidateResponse(candidate.getId(), candidate.getName()),
     );
   };
 }

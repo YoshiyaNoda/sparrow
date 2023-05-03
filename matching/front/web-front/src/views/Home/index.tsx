@@ -3,7 +3,7 @@ import ApiRequestUtil from "../../api/ApiRequestUtil";
 import CandidateResponse from '../../model/CandidateResponse';
 
 const Home = () => {
-    const [candidateList, setCandidateList] = useState([new CandidateResponse('Please wait a moment...')]);
+    const [candidateList, setCandidateList] = useState([new CandidateResponse('0', 'Please wait a moment...')]);
 
     useEffect(() => {
         (async () => {
@@ -16,7 +16,7 @@ const Home = () => {
       <>
         <ul>
           {candidateList.map((candidate: CandidateResponse) => (
-            <li key={candidate.name}>{candidate.name}</li>
+            <li key={candidate.id}>{candidate.name}</li>
           ))}
         </ul>
       </>
