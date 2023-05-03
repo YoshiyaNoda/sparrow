@@ -1,19 +1,31 @@
 import React, { useState, useEffect } from "react";
-import apiRequestUtil from "../../api/ApiRequestUtil";
+import ApiRequestUtil from "../../api/ApiRequestUtil";
+import CandidateResponse from '../../model/CandidateResponse';
+
+let counter = 0;
 
 const Home = () => {
-    const [msg, setMsg] = useState('please wait...');
+    const [candidateList, setCandidateList] = useState([new CandidateResponse('Please wait a moment...')]);
+
     useEffect(() => {
-        (async () => {
-            const result = await apiRequestUtil.fetchCandidateList();
-            setMsg(result);
-        })()
+        if (counter == 0) {
+            (async () => {
+                const result = await ApiRequestUtil.fetchCandidateList();
+                setCandidateList(result);
+                counter += 1;
+            })()
+        }
     });
 
-    return <>
-        <h1>Hello, This is Home!!</h1>
-        <p>{String(msg)}</p>
-    </>;
+    return (
+      <>
+        <ul>
+          {candidateList.map((candidate: CandidateResponse) => (
+            <li key={candidate.name}>{candidate.name}</li>
+          ))}
+        </ul>
+      </>
+    );
 }
 
 export default Home;
