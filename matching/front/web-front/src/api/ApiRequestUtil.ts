@@ -1,4 +1,5 @@
 import axiosBase, { Axios } from 'axios';
+import CandidateResponse from '../model/CandidateResponse';
 
 const API_URL = 'http://localhost:8000';
 
@@ -23,8 +24,16 @@ class ApiRequestUtil {
         return this.$axios.get(url).then(res => res.data);
     }
 
+    private post(url: string, parameter: any) {
+        return this.$axios.post(url, parameter).then(res => res.data);
+    }
+
     public async fetchCandidateList() {
         return await this.get('/');
+    }
+
+    public async favor(candidate: CandidateResponse) {
+        return await this.post('/favor', candidate);
     }
 }
 
