@@ -15,7 +15,7 @@ def tweet(TWITTER_BASE, LOGIN_ID, PASSWORD, is_reply=False, explore_path=''):
     options.add_argument('--no-sandbox')
     # ブラウザーを起動
     driver = webdriver.Chrome(options=options)
-    driver.set_window_size('1440', '1200')  #大事。デフォルトが800*600になっている。headlessだと要素部分が表示されないことがあるため。
+    driver.set_window_size('1200', '1000')  #大事。デフォルトが800*600になっている。headlessだと要素部分が表示されないことがあるため。
 
     twitter_base = TWITTER_BASE + "login/"
     account = LOGIN_ID
