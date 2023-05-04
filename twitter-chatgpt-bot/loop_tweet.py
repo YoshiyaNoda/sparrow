@@ -9,7 +9,7 @@ LOGIN_ID = auth.auth_info['TWITTER_ACCOUNT_ID'] #ツイッターログイン用�
 PASSWORD = auth.auth_info['TWITTER_LOGIN_PASS']
 TEXT = "ほげ" + datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S.%f') #ツイートしたい呟きを指定
 
-INTERVAL = 60 * 60 / 5
+INTERVAL = 60 * 60 / 6
 
 if __name__ == "__main__":
     # Login and tweet
@@ -24,7 +24,7 @@ if __name__ == "__main__":
         time.sleep(INTERVAL)
         tweet.tweet(TWITTER_BASE, LOGIN_ID, PASSWORD, True, '/tabs/entertainment_unified')
         time.sleep(INTERVAL)
-        # tweet.tweet(TWITTER_BASE, LOGIN_ID, PASSWORD, False, '')
-        # time.sleep(INTERVAL)
-        # tweet.tweet(TWITTER_BASE, LOGIN_ID, PASSWORD, False, '/tabs/trending')
-        # time.sleep(INTERVAL)
+        tweet.tweet(TWITTER_BASE, LOGIN_ID, PASSWORD, False, '')
+        time.sleep(INTERVAL)
+        tweet.tweet(TWITTER_BASE, LOGIN_ID, PASSWORD, False, '/tabs/trending')
+        time.sleep(INTERVAL)
