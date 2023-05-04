@@ -10,4 +10,4 @@ TEXT = "ほげ" + datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S.%f') #ツ�
 
 if __name__ == "__main__":
     # Login and tweet
-    tweet.tweet(TWITTER_BASE, LOGIN_ID, PASSWORD, TEXT)
+    tweet.tweet(TWITTER_BASE, LOGIN_ID, PASSWORD, False)

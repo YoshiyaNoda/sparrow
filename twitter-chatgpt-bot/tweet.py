@@ -8,7 +8,7 @@ import urllib.parse
 import chatgpt
 
 # twitterログイン
-def tweet(TWITTER_BASE, LOGIN_ID, PASSWORD, TEXT):
+def tweet(TWITTER_BASE, LOGIN_ID, PASSWORD, is_reply=False, explore_path=''):
     options = webdriver.ChromeOptions()
     # ヘッドレスモードに
     # options.add_argument('--headless')
@@ -65,7 +65,8 @@ def tweet(TWITTER_BASE, LOGIN_ID, PASSWORD, TEXT):
 
     # ツイートを検索
     # explore_target_url= TWITTER_BASE + "explore"
-    explore_target_url= TWITTER_BASE + "explore/tabs/trending"
+    # explore_target_url= TWITTER_BASE + "explore/tabs/trending"
+    explore_target_url= TWITTER_BASE + "explore" + explore_path
     driver.get(explore_target_url)
     time.sleep(5)
     driver.save_screenshot('ツイート検索画面.png')
@@ -89,28 +90,29 @@ def tweet(TWITTER_BASE, LOGIN_ID, PASSWORD, TEXT):
     ai_tweet_text = chatgpt.get_ai_ans(trend_text, hash_tag)
     time.sleep(10)
 
-    # リプライツイート
-    reply_target = driver.find_element_by_xpath('//div[@data-testid="reply"]')
-    try:
-        reply_target.click()
-        time.sleep(1)
-        reply_target_input_area = driver.find_element_by_xpath('//div[@data-testid="tweetTextarea_0"]')
-        reply_target_input_area.send_keys(ai_tweet_text)
-    except:
-        print('reply failed')
+    if is_reply:
+        # リプライツイート
+        reply_target = driver.find_element_by_xpath('//div[@data-testid="reply"]')
+        try:
+            reply_target.click()
+            time.sleep(1)
+            reply_target_input_area = driver.find_element_by_xpath('//div[@data-testid="tweetTextarea_0"]')
+            reply_target_input_area.send_keys(ai_tweet_text)
+        except:
+            print('reply failed')
+    else:
+        # 新規ツイート
+        tweet_text = urllib.parse.quote(ai_tweet_text, safe='')
+        #print(tweet_text)
 
-    # 新規ツイート
-    # tweet_text = urllib.parse.quote(ai_tweet_text, safe='')
-    #print(tweet_text)
+        # 新規ツイート(not reply)
+        target_url = TWITTER_BASE + "intent/tweet?text=" + tweet_text
+        # print(target_url)
+        #exit()
 
-    # 新規ツイート(not reply)
-    # target_url = TWITTER_BASE + "intent/tweet?text=" + tweet_text
-    # print(target_url)
-    #exit()
-
-    # 投稿画面へ遷移
-    # driver.get(target_url)
-    # time.sleep(2)
+        # 投稿画面へ遷移
+        driver.get(target_url)
+        time.sleep(2)
 
     # デバッグ4
     driver.save_screenshot('④ツイート画面.png')
